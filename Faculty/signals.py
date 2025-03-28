@@ -67,7 +67,7 @@ def send_mail_vfc(sender,instance,title,name,**kwargs):
 
     send_mail(
         subject=title+'''-Permission Approved!''',
-        from_email='anand.gopan08@gmail.com',
+        from_email = os.getenv('EMAIL_HOST_USER')
         message='''Dear'''+first_name+last_name+''',
         We are pleased to inform you that '''+name+"("+title+")"+''' has approved your venue permission request for the following event details:
 
