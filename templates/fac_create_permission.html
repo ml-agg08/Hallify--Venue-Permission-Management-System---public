@@ -1,0 +1,68 @@
+{% extends "blank_layout.html" %}
+
+{% block body %} 
+
+{% load static %}
+
+<h2>Create New Permission</h2>
+
+<style>
+    .my-container {
+        display: flex;
+        gap: 20px; 
+        align-items: flex-start;
+        flex-wrap: wrap; 
+    }
+
+    .my-left, .my-right {
+        flex: 1; 
+        min-width: 300px; 
+    }
+
+    .my-right {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .my-container {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .my-left, .my-right {
+            width: 100%; 
+        }
+    }
+</style>
+
+<div class="my-container">
+    <div class="my-left">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ frm.as_p }}
+            <button type="submit" name="create">Submit</button>
+        </form>
+
+        {% for e in errors %}
+
+        <h4 style="border-radius: 5px ; color: white;margin-bottom: 10px; margin-left: 10px; background-color: black;padding: 5px 5px;">{{e}}</h4>
+
+        {% endfor %}
+
+
+    </div>
+
+    <div class="my-right">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ frm_clash.as_p }}
+            <button type="submit" name="search">Search for venue clashes!</button>
+        </form>
+
+        {% include 'clashinfo_pane.html' %}
+    </div>
+</div>
+
+{% endblock body %}

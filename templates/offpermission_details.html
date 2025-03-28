@@ -1,0 +1,74 @@
+{% extends "blank_layout.html" %}
+
+{% block body %} 
+
+{% load static %}
+    
+    <!-- Single Venue Details -->
+    <div class="small-container single-product">
+        <div class="row">
+            <div class="col-2">
+                <img src="{% static 'images/tkmpic.jpg' %}" width="100%" id="ProductImg">
+
+            </div>
+            <div class="col-2">
+
+                <div id="event-details">
+                    <h1>{{ permission_details.event_name }}</h1>
+                    <p>{{ permission_details.event_description }}</p>
+                </div>
+    
+                <div id="venue-details" style="display: none;">
+                    <h2>{{ permission_details.venue_name }}</h2>
+                    <h3>Venue booked for the following date & time:</h3>
+                    <h4>Date: {{ permission_details.date_start }} to {{ permission_details.date_end }}</h4>
+                    <h4>Time: {{ permission_details.time_start }} to {{ permission_details.time_end }}</h4>
+                </div>
+
+                <div style="padding-top: 20px;">
+                    <h5 style="color: gray;">This permission request is made by:</h5>
+                    <h5>{{pm_user.firstname}} {{pm_user.lastname}}</h5>
+                    <h5>{{pm_user.department}}</h5>
+                    <h5>{{pm_user.branch}} {{pm_user.batch}}</h5>
+                    <h5>{{pm_user.phone}}</h4>
+                </div>
+
+                {% if permission_details.off_tag == 'no' %}
+                <a href="{% url 'offtagedit' pk=permission_details.id %}" class="btn" id="approval-btn">Give approval!</a>
+                {% else %}
+                <p>You've approved the venue permission.</p>  
+                {% endif %}   
+
+                <button onclick="toggleDetails()" 
+                style="display: inline-block; background: #ff523b; color: white; padding: 8px 30px; margin: 30px 0; border-radius: 30px; transition: background 0.5s;"
+                onmouseover="this.style.background='#563434'" 
+                onmouseout="this.style.background='#ff523b'" class="venue-event-btn">
+                See Venue Details
+                </button>
+
+            
+            </div>
+        </div>
+    </div>
+
+
+<!-- JavaScript -->
+<script>
+    function toggleDetails() {
+        var eventDetails = document.getElementById("event-details");
+        var venueDetails = document.getElementById("venue-details");
+        var toggleButton = document.querySelector(".venue-event-btn");
+
+        if (eventDetails.style.display !== "none") {
+            eventDetails.style.display = "none";
+            venueDetails.style.display = "block";
+            toggleButton.textContent = "Event Details";
+        } else {
+            eventDetails.style.display = "block";
+            venueDetails.style.display = "none";
+            toggleButton.textContent = "See Venue Details";
+        }
+    }
+</script>
+
+{% endblock body %}    

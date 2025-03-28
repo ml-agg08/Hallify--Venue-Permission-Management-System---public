@@ -1,0 +1,88 @@
+{% load static %}
+
+<!-- Single Venue Details -->
+<div class="small-container single-product">
+    <div class="row">
+        <div class="col-2">
+            <img src="{% static 'images/tkmpic.jpg' %}" width="100%" id="ProductImg">
+        </div>
+
+        <div class="col-2">
+            <!-- Event Name & Toggle Icon -->
+            <h4 style="background-color: black; color: white; padding: 5px; display: inline-block; border-radius: 5px;">
+                {{ permission_details.event_name }}
+            </h4>
+            <span id="toggle-icon" style="cursor: pointer; margin-left: 10px;">&#9660;</span> 
+
+            <!-- Venue Details Section -->
+            <div id="venue-details">
+                <h1>{{ permission_details.venue_name }}</h1>
+                <h3>Venue booked for the following date & time:</h3>
+                <h4>Date: {{ permission_details.date_start }} to {{ permission_details.date_end }}</h4>
+                <h4>Time: {{ permission_details.time_start }} to {{ permission_details.time_end }}</h4>
+
+                {% if permission_details.fc_tag == 'yes' and permission_details.vfc_tag == 'yes' and permission_details.scy_tag == 'yes' %}
+                <a href="javascript:void(0);" class="btn" id="approval-btn">Venue Permitted!</a>
+                {% else %}
+                <a href="javascript:void(0);" class="btn" id="approval-btn">Awaiting approval</a>
+                {% endif %}
+            </div>
+
+            <!-- Event Description (Initially Hidden) -->
+            <div id="event-description" style="display: none;">
+                <p>{{ permission_details.event_description }}</p>
+            </div>
+
+            <!-- Approval Details (Initially Hidden) -->
+            <div id="approval-details" style="display: none;">
+                {% if permission_details.fc_tag == 'no' %}
+                <p>Faculty coordinator has not approved the venue permission.</p>
+                {% else %}
+                <p>Faculty coordinator has approved the venue permission.</p>
+                {% endif %}
+
+                {% if permission_details.off_tag == 'no' %}
+                <p>Office Personnel has not approved the venue permission.</p>
+                {% else %}
+                <p>Office Personnel has approved the venue permission.</p>
+                {% endif %}
+
+                {% if permission_details.vfc_tag == 'no' %}
+                <p>Venue faculty coordinator has not approved the venue permission.</p>
+                {% else %}
+                <p>Venue Faculty coordinator has approved the venue permission.</p>
+                {% endif %}
+
+                {% if permission_details.scy_tag == 'no' %}
+                <p>Security has not approved the venue permission.</p>
+                {% else %}
+                <p>Security has approved the venue permission.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+    document.getElementById("toggle-icon").addEventListener("click", function () {
+        var venueDetails = document.getElementById("venue-details");
+        var eventDescription = document.getElementById("event-description");
+        var toggleIcon = document.getElementById("toggle-icon");
+
+        if (venueDetails.style.display === "none") {
+            venueDetails.style.display = "block";  // Show venue details
+            eventDescription.style.display = "none";  // Hide event description
+            toggleIcon.innerHTML = "&#9660;"; // Down arrow
+        } else {
+            venueDetails.style.display = "none";  // Hide venue details
+            eventDescription.style.display = "block";  // Show event description
+            toggleIcon.innerHTML = "&#9650;"; // Up arrow
+        }
+    });
+
+    document.getElementById("approval-btn").addEventListener("click", function () {
+        var details = document.getElementById("approval-details");
+        details.style.display = (details.style.display === "none") ? "block" : "none";
+    });
+</script>

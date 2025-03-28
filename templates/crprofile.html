@@ -1,0 +1,49 @@
+{% extends "blank_layout.html" %}
+
+{% block body %}
+
+<h2 style="text-align: center;">Club Representative Profile</h2>
+
+<style>
+    .profile-container {
+        width: 50%;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9f9;
+        text-align: center;
+    }
+
+    .profile-container h3 {
+        color: #333;
+    }
+
+    .profile-details {
+        list-style: none;
+        padding: 0;
+    }
+
+    .profile-details li {
+        padding: 8px 0;
+        font-size: 18px;
+    }
+</style>
+
+<div class="profile-container">
+    <h3>{{ profile.firstname }} {{ profile.lastname }}</h3>
+
+    <ul class="profile-details">
+        <li><strong>Phone:</strong> {{ profile.phone }}</li>
+        <li><strong>Branch:</strong> {{ profile.get_branch_display }}</li>
+        <li><strong>Batch:</strong> {{ profile.batch }}</li>
+        <li><strong>Year:</strong> {{ profile.get_year_display }}</li>
+        <li><strong>Admission Number:</strong> {{ profile.admno }}</li>
+        <li><strong>Email:</strong> {{ profile.email }}</li>
+        <li><strong>Club:</strong> {{ profile.club.club_name }}</li>
+        <li><strong>Created On:</strong> {{ profile.created_at|date:"d M Y, H:i" }}</li>
+    </ul>
+</div>
+
+{% endblock body %}

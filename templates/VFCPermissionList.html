@@ -1,0 +1,61 @@
+{% extends "blank_layout.html" %}
+
+{% block body %} 
+
+{% load static %}
+{% load chunks %}
+
+<button style="position: absolute; top: 100px; left: 10px; background-color: #000000; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+    <a href="?status=no&page=1" style="text-decoration: none; color: white; font-weight: bold;">Permission Awaiting</a>
+</button>
+
+<button style="position: absolute; top: 100px; left: 200px; background-color: #000000; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+    <a href="?status=yes&page=1" style="text-decoration: none; color: white; font-weight: bold;">Permitted</a>
+</button>
+
+
+<div class="small-container">
+    <div class="row row-2">
+        <h2>All Permissions</h2>
+    </div>
+
+
+    {% for permission_chunk in permission_set|chunks:2 %}
+
+    <div class="row">
+
+        {% for permission in permission_chunk %}
+            <div class="col-4">  
+                <a href="/vfc_permission_details/{{permission.id}}"><img src="{% static 'images/tkmpic.jpg' %}"></a>
+                <h4>{{permission.venue_name}}</h4>
+                <h4>Date: {{permission.date_start}} to {{permission.date_end}}</h4>
+                <h4>Time: {{permission.time_start}} to {{permission.time_end}}</h4>
+            </div>
+        {% endfor %}
+
+    </div>            
+
+    {% endfor %}
+
+    <div class="page-btn">
+
+        {% if permission_set.has_previous %}
+        <a href="?status={{request.GET.status}}&page={{permission_set.previous_page_number}}">previous</a>
+        {% endif %}
+
+        {% for i in permission_set.paginator.page_range %}
+
+       <a href="?status={{request.GET.status}}&page={{i}}"><span>{{i}}</span></a>  
+
+       {% endfor %}
+
+       {% if permission_set.has_next %}
+       <a href="?status={{request.GET.status}}&page={{permission_set.next_page_number}}">next</a>
+       {% endif %}
+
+    </div>
+</div>
+
+{% endblock body %}
+
+

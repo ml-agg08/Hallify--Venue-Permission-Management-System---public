@@ -1,0 +1,28 @@
+{% extends "blank_layout.html" %}
+
+{% block body %} 
+
+{% load static %}
+
+<div style="width: 50%; margin: auto; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); background-color: #f8f8f8; text-align: center;">
+    <h2>CREATE NEW PROFILE</h2>
+    
+    <form method="POST" enctype="multipart/form-data" style="display: flex; flex-direction: column; align-items: center;">
+        {% csrf_token %}
+
+        <div style="width: 80%;">
+            {{ frm.as_p }}
+        </div>
+
+        <button type="submit" style="padding: 10px 20px; background-color: #000000; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px;">
+            Submit
+        </button>
+
+        {% if error != '' %}
+        <h4 style="border-radius: 5px ; color: white;margin-bottom: 10px; margin-left: 10px; background-color: black;padding: 5px 5px;">{{error}}</h4>
+        {% endif %}
+        
+    </form>
+</div>
+
+{% endblock body %}

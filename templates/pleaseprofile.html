@@ -1,0 +1,71 @@
+{% extends "blank_layout.html" %}
+
+{% block body %} 
+
+{% load static %}
+
+<div style="text-align: center; background: white; padding: 30px; border-radius: 15px; box-shadow: 0px 5px 15px rgba(0,0,0,0.1);">
+    <h2 style="color: #333; margin-bottom: 10px;">Setup Your Profile</h2>
+    <p style="color: #666; font-size: 16px;">Please complete your profile before continuing.</p>
+
+    {% if user_type == 'CR' %}
+
+    <a href="{% url 'clubrep_profile' %}"><button class="btn">
+        Complete Profile
+    </button></a>
+
+    {% endif %}
+    
+    {% if user_type == 'FAC' %}
+
+    <a href="{% url 'faculty_profile' %}"><button class="btn">
+        Complete Profile
+    </button></a>
+
+    {% endif %}
+
+    {% if user_type == 'FC' %}
+
+    <a href="{% url 'facultycoordinator_profile' %}"><button class="btn">
+        Complete Profile
+    </button></a>
+
+    {% endif %}
+
+    {% if user_type == 'OFF' %}
+
+    <a href="{% url 'office_profile' %}"><button class="btn">
+        Complete Profile
+    </button></a>
+
+    {% endif %}
+
+    {% if user_type == 'VFC' %}
+
+    <a href="{% url 'venuefacultycoordinator_profile' %}"><button class="btn">
+        Complete Profile
+    </button></a>
+
+    {% endif %}
+
+    {% if user_type == 'VFS' %}
+
+    <a href="{% url 'venuefacultystaff_profile' %}"><button class="btn">
+        Complete Profile
+    </button></a>
+
+    {% endif %}
+
+    {% if user_type == 'SCY' %}
+
+    <a href="{% url 'security_profile' %}"><button class="btn">
+        Complete Profile
+    </button></a>
+
+    {% endif %}
+
+</div>
+
+{% endblock body %}
+
+

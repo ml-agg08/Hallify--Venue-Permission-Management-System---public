@@ -1,0 +1,28 @@
+{% extends "blank_layout.html" %}
+
+{% block body %}
+{% load static %}
+
+<h1 style="color: black; text-align: center;">CHOOSE YOUR ROLE:</h1>
+
+<form method="POST" style="max-width: 400px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
+    {% csrf_token %}
+
+    <label for="user_type" style="font-size: 18px; color: #333; font-weight: bold;">Select Your Role:</label>
+    <select name="user_type" id="user_type" required style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; font-size: 16px;">
+        <option value="" disabled selected>-- Select a role --</option>
+        <option value="CR">Club Representative</option>
+        <option value="FAC">Faculty</option>
+        <option value="FC">Faculty Coordinator</option>
+        <option value="OFF">Office Personnel</option>
+        <option value="VFC">Venue Faculty Coordinator</option>
+        <option value="VFS">Venue Faculty Staff</option>
+        <option value="SCY">Security</option>
+    </select>
+
+    <button type="submit" style="width: 100%; background: black; color: white; padding: 10px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; transition: 0.3s;">
+        Submit
+    </button>
+</form>
+
+{% endblock body %}

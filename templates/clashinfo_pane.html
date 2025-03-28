@@ -1,0 +1,34 @@
+{% if permissions == None %}
+<h4 style="text-align: center;">SEE YOU CLASH INFO HERE !!</h4>
+{% else %}
+
+<h3>{{message}}</h3>
+
+{% for permission in permissions %}
+
+<h4 style="font-weight: bolder; color: rgb(0, 0, 0);">{{permission.venue_name}}</h4>
+
+<style>
+    #my1{
+        font-weight: bold;
+    }
+    #my2{
+        font-style: italic;
+        font-weight: 100;
+    }
+</style>
+
+
+<h4 id="my1">Date: {{permission.date_start}} to {{permission.date_end}}</h4>
+<h4 id="my1">Time: {{permission.time_start}} to {{permission.time_end}}</h4>
+
+
+<h4 id="my2" style="font-size: large; font-weight: 400;">{{permission.owner.club_name}}</h4>
+<h5 id="my2">Have any concerns, please contact: {{permission.owner.clubrep.firstname}} {{permission.owner.clubrep.lastname }}</h4>
+<h5 id="my2">Phone: {{permission.owner.clubrep.phone}}</h4>
+
+<hr>
+
+{% endfor %}
+
+{% endif %}
