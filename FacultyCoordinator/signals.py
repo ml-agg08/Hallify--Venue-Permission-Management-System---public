@@ -65,7 +65,6 @@ def send_mail_vfc(sender,instance,**kwargs):
         Club Representative, {club_name}  
         {cr_phone}
         """,
-        from_email="anand.gopan08@gmail.com",
         recipient_list=[fc.email],
         fail_silently=False,
     )
