@@ -1,5 +1,9 @@
 # Venue/Hall Permission Management System Documentation
 
+## The website has been deplyed and can be accessed from here:
+
+https://lucky-nadean-aanandh-d140dffc.koyeb.app/
+
 ## Table of Contents
 1. *Introduction*
 2. *Project Concept & Background*
